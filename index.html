@@ -341,91 +341,165 @@
     }
 
     /* ==========================================================================
-       HERO SECTION (PORTADA PRINCIPAL)
+       HERO SECTION (PORTADA PRINCIPAL CENTRADA CON ALTO IMPACTO VISUAL)
        ========================================================================== */
     .hero-section {
-      padding-top: 145px;
-      padding-bottom: 85px;
+      padding-top: 175px;
+      padding-bottom: 120px;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200, 151, 23, 0.12), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(35, 80, 27, 0.08), transparent 70%);
+    }
+
+    /* Malla de ingeniería técnica de fondo */
+    .hero-grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(35, 80, 27, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(35, 80, 27, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .hero-glow-1 {
       position: absolute;
       top: -100px;
-      right: -100px;
-      width: 520px;
-      height: 520px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(200, 151, 23, 0.13) 0%, transparent 70%);
-      filter: blur(50px);
+      background: radial-gradient(circle, rgba(200, 151, 23, 0.16) 0%, transparent 65%);
+      filter: blur(75px);
       z-index: 0;
       pointer-events: none;
+      animation: pulseAura 7s ease-in-out infinite alternate;
     }
 
     .hero-glow-2 {
       position: absolute;
-      top: 30%;
-      left: -150px;
-      width: 550px;
-      height: 550px;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 650px;
+      height: 500px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(35, 80, 27, 0.1) 0%, transparent 70%);
-      filter: blur(60px);
+      background: radial-gradient(circle, rgba(35, 80, 27, 0.13) 0%, transparent 70%);
+      filter: blur(80px);
       z-index: 0;
       pointer-events: none;
     }
 
+    @keyframes pulseAura {
+      0% { transform: translateX(-50%) scale(0.92); opacity: 0.7; }
+      100% { transform: translateX(-50%) scale(1.08); opacity: 1; }
+    }
+
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 45px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       position: relative;
       z-index: 1;
     }
 
     .hero-content {
-      max-width: 600px;
+      max-width: 900px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .hero-badge-epic {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 24px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1.5px solid rgba(200, 151, 23, 0.35);
+      box-shadow: 0 8px 20px rgba(200, 151, 23, 0.15);
+      border-radius: 50px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hero-badge-epic .pulse-dot-tag {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+      animation: dotPulse 1.8s infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.6); opacity: 0.4; }
+    }
+
+    .hero-badge-epic span {
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--verde-agro-dark);
     }
 
     .hero-title {
-      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-      line-height: 1.14;
+      font-size: clamp(2.5rem, 5.2vw, 4.3rem);
+      line-height: 1.12;
       color: var(--verde-agro-dark);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
     }
 
     .hero-title .highlight-gold {
       color: var(--dorado-agro);
-      background: linear-gradient(120deg, var(--dorado-agro-dark), var(--dorado-agro-light));
+      background: linear-gradient(120deg, var(--dorado-agro-dark) 0%, var(--dorado-agro-light) 60%, var(--dorado-agro) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 20px rgba(200, 151, 23, 0.2));
     }
 
     .hero-description-lead {
-      font-size: 1.15rem;
+      font-size: clamp(1.15rem, 2vw, 1.35rem);
       font-weight: 600;
       color: var(--verde-agro);
       line-height: 1.5;
-      margin-bottom: 16px;
-      border-left: 3.5px solid var(--dorado-agro);
-      padding-left: 16px;
+      margin-bottom: 18px;
+      max-width: 780px;
     }
 
     .hero-description-body {
-      font-size: 0.98rem;
+      font-size: 1.05rem;
       color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 30px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 740px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 18px;
       align-items: center;
-      margin-bottom: 35px;
+      justify-content: center;
+      margin-bottom: 50px;
     }
 
     .btn-primary-wa {
@@ -434,22 +508,23 @@
       gap: 12px;
       background: linear-gradient(135deg, #25D366, #128C7E);
       color: #ffffff;
-      padding: 15px 30px;
+      padding: 17px 38px;
       border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.02rem;
+      font-weight: 800;
+      font-size: 1.08rem;
+      letter-spacing: 0.02em;
       transition: var(--transition);
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
     }
 
     .btn-primary-wa i {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
     }
 
     .btn-primary-wa:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.45);
-      filter: brightness(1.05);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(37, 211, 102, 0.55);
+      filter: brightness(1.06);
     }
 
     .btn-secondary-quote {
@@ -459,266 +534,19 @@
       background: #ffffff;
       color: var(--verde-agro);
       border: 2px solid var(--verde-agro);
-      padding: 13px 26px;
+      padding: 15px 34px;
       border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.98rem;
+      font-weight: 800;
+      font-size: 1.02rem;
       transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     }
 
     .btn-secondary-quote:hover {
       background: var(--verde-agro);
       color: #ffffff;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px var(--verde-glow);
-    }
-
-    /* ==========================================================================
-       HERO CARD DERECHA: 3 AROS ANIMADOS (24hs, 7 días, 4 provs) + 4 PROVINCIAS
-       ========================================================================== */
-    .hero-rings-card {
-      background: #ffffff;
-      border-radius: var(--radius-xl);
-      padding: 30px;
-      border: 1.5px solid var(--border-dorado);
-      box-shadow: var(--shadow-card);
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    .card-top-indicator {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(35, 80, 27, 0.08);
-    }
-
-    .indicator-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(35, 80, 27, 0.08);
-      color: var(--verde-agro-dark);
-      font-weight: 700;
-      font-size: 0.8rem;
-      padding: 5px 14px;
-      border-radius: 50px;
-    }
-
-    .indicator-badge i {
-      color: var(--dorado-agro);
-    }
-
-    .live-status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #0f766e;
-      background: rgba(37, 211, 102, 0.12);
-      padding: 4px 10px;
-      border-radius: 50px;
-    }
-
-    .live-status-pill .pulse-dot {
-      width: 7px;
-      height: 7px;
-      background: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #10b981;
-      animation: pulseGreen 1.6s infinite;
-    }
-
-    @keyframes pulseGreen {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.4; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    /* FILA DE 3 AROS ANIMADOS */
-    .rings-metrics-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-
-    .ring-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      background: var(--bg-subtle);
-      border-radius: var(--radius-md);
-      padding: 16px 8px 14px;
-      border: 1px solid rgba(35, 80, 27, 0.08);
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .ring-box:hover {
-      background: #ffffff;
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(200, 151, 23, 0.15);
-      border-color: var(--border-dorado);
-    }
-
-    .ring-svg-container {
-      position: relative;
-      width: 90px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 8px;
-    }
-
-    .ring-svg-container svg {
-      width: 100%;
-      height: 100%;
-      transform: rotate(-90deg);
-    }
-
-    .circle-bg {
-      fill: none;
-      stroke: rgba(35, 80, 27, 0.1);
-      stroke-width: 7;
-    }
-
-    .circle-progress {
-      fill: none;
-      stroke-width: 7;
-      stroke-linecap: round;
-      stroke-dasharray: 251.2;
-      stroke-dashoffset: 251.2;
-      animation: fillProgress 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .progress-verde {
-      stroke: url(#verdeGradient);
-    }
-
-    .progress-dorado {
-      stroke: url(#doradoGradient);
-    }
-
-    @keyframes fillProgress {
-      to {
-        stroke-dashoffset: 0;
-      }
-    }
-
-    .ring-inner-content {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .ring-number {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 900;
-      line-height: 1;
-      color: var(--verde-agro-dark);
-    }
-
-    .ring-unit {
-      font-size: 0.68rem;
-      font-weight: 800;
-      color: var(--dorado-agro-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-top: 2px;
-    }
-
-    .ring-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      line-height: 1.2;
-    }
-
-    /* FILA INFERIOR: 4 PROVINCIAS EQUITATIVAS */
-    .provinces-lower-section {
-      background: var(--bg-subtle);
-      border-radius: var(--radius-md);
-      padding: 16px 18px;
-      border: 1px solid rgba(35, 80, 27, 0.1);
-    }
-
-    .provinces-lower-title {
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--verde-agro-dark);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .provinces-lower-title span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .provinces-lower-title i {
-      color: var(--dorado-agro);
-    }
-
-    .provinces-pills-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .hero-prov-chip {
-      background: #ffffff;
-      border: 1.5px solid rgba(35, 80, 27, 0.12);
-      border-radius: 50px;
-      padding: 8px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--verde-agro-dark);
-      transition: var(--transition);
-    }
-
-    .hero-prov-chip .prov-left {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .hero-prov-chip i {
-      color: var(--dorado-agro);
-      font-size: 0.8rem;
-    }
-
-    .hero-prov-chip:hover {
-      border-color: var(--dorado-agro);
-      background: #fefcf7;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(200, 151, 23, 0.15);
-    }
-
-    .chip-tag {
-      font-size: 0.65rem;
-      color: var(--verde-agro);
-      background: rgba(35, 80, 27, 0.08);
-      padding: 2px 6px;
-      border-radius: 20px;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 30px var(--verde-glow);
     }
 
     /* ==========================================================================
@@ -1329,8 +1157,8 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-      gap: 40px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
       margin-bottom: 60px;
     }
 
@@ -1430,18 +1258,9 @@
        RESPONSIVE DESIGN (TABLETS & CELULARES)
        ========================================================================== */
     @media (max-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 45px;
-        justify-items: center;
-      }
-      .hero-content {
-        max-width: 100%;
-      }
-      .hero-rings-card {
-        max-width: 640px;
-        width: 100%;
-        margin: 0 auto;
+      .hero-section {
+        padding-top: 140px;
+        padding-bottom: 90px;
       }
       .contact-main-grid {
         grid-template-columns: 1fr;
@@ -1464,17 +1283,26 @@
       .nav-container {
         height: 74px;
       }
-      .hero-rings-card {
-        padding: 20px 16px;
-        max-width: 100%;
-        margin: 0 auto;
+      .hero-section {
+        padding-top: 110px;
+        padding-bottom: 60px;
       }
-      .ring-svg-container {
-        width: 70px;
-        height: 70px;
+      .hero-title {
+        font-size: clamp(2rem, 8vw, 2.7rem);
       }
-        .ring-number {
-        font-size: 1.15rem;
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 14px;
+        margin-bottom: 35px;
+      }
+      .btn-primary-wa, .btn-secondary-quote {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 24px;
+      }
+      .hero-scroll-cue {
+        display: none;
       }
       .mobile-toggle {
         display: block;
@@ -1511,12 +1339,6 @@
       .btn-header-wa {
         display: none;
       }
-      .rings-metrics-row {
-        gap: 10px;
-      }
-      .provinces-pills-row {
-        grid-template-columns: 1fr;
-      }
       .other-services-grid {
         grid-template-columns: 1fr;
       }
@@ -1532,14 +1354,23 @@
       .specialty-banner, .specialty-body {
         padding: 30px 24px;
       }
+    .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
       .footer-grid {
         grid-template-columns: 1fr;
       }
-      .hero-mini-badges {
-        flex-direction: column;
-        gap: 16px;
-      }
     }
+
   </style>
 </head>
 <body>
@@ -1608,6 +1439,7 @@
        HERO SECTION (PORTADA PRINCIPAL CON AROS ANIMADOS Y 4 PROVINCIAS)
        ========================================================================== -->
   <section class="hero-section" id="inicio">
+    <div class="hero-grid-pattern"></div>
     <div class="hero-glow-1"></div>
     <div class="hero-glow-2"></div>
 
@@ -1615,8 +1447,9 @@
       
       <!-- Contenido Textual Hero -->
       <div class="hero-content">
-        <div class="section-tag">
-          <i class="fa-solid fa-bolt"></i> Respuesta Inmediata en Campaña
+        <div class="hero-badge-epic">
+          <span class="pulse-dot-tag"></span>
+          <span>Respuesta Inmediata en Campaña</span>
         </div>
         
         <h1 class="hero-title">
@@ -1642,109 +1475,6 @@
             <i class="fa-solid fa-tractor"></i>
             <span>Ver Productos</span>
           </a>
-        </div>
-      </div>
-
-      <!-- CARD LATERAL DERECHA: 3 AROS ANIMADOS + 4 PROVINCIAS -->
-      <div class="hero-rings-card">
-        
-        <div class="card-top-indicator">
-          <div class="indicator-badge">
-            <i class="fa-solid fa-shield-halved"></i> Capacidad Operativa en Campaña
-          </div>
-          <div class="live-status-pill">
-            <span class="pulse-dot"></span> Activo
-          </div>
-        </div>
-
-        <!-- Gradientes SVG para los aros -->
-        <svg width="0" height="0" style="position: absolute;">
-          <defs>
-            <linearGradient id="verdeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#2e6823" />
-              <stop offset="100%" stop-color="#23501b" />
-            </linearGradient>
-            <linearGradient id="doradoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#e0ac26" />
-              <stop offset="100%" stop-color="#c89717" />
-            </linearGradient>
-          </defs>
-        </svg>
-
-        <!-- 3 AROS CIRCULARES ANIMADOS -->
-        <div class="rings-metrics-row">
-          
-          <!-- Aro 1: 24 hs -->
-          <div class="ring-box">
-            <div class="ring-svg-container">
-              <svg viewBox="0 0 100 100">
-                <circle class="circle-bg" cx="50" cy="50" r="40" />
-                <circle class="circle-progress progress-verde" cx="50" cy="50" r="40" />
-              </svg>
-              <div class="ring-inner-content">
-                <span class="ring-number">24</span>
-                <span class="ring-unit">hs</span>
-              </div>
-            </div>
-            <span class="ring-label">Respuesta rápida</span>
-          </div>
-
-          <!-- Aro 2: 7 días -->
-          <div class="ring-box">
-            <div class="ring-svg-container">
-              <svg viewBox="0 0 100 100">
-                <circle class="circle-bg" cx="50" cy="50" r="40" />
-                <circle class="circle-progress progress-dorado" cx="50" cy="50" r="40" />
-              </svg>
-              <div class="ring-inner-content">
-                <span class="ring-number">365</span>
-                <span class="ring-unit">días</span>
-              </div>
-            </div>
-            <span class="ring-label">Disponibilidad</span>
-          </div>
-
-          <!-- Aro 3: 4 provincias -->
-          <div class="ring-box">
-            <div class="ring-svg-container">
-              <svg viewBox="0 0 100 100">
-                <circle class="circle-bg" cx="50" cy="50" r="40" />
-                <circle class="circle-progress progress-verde" cx="50" cy="50" r="40" />
-              </svg>
-              <div class="ring-inner-content">
-                <span class="ring-number">4</span>
-                <span class="ring-unit">provs</span>
-              </div>
-            </div>
-            <span class="ring-label">Cobertura total</span>
-          </div>
-
-        </div>
-
-        <!-- ABAJO DE LOS AROS: LAS 4 PROVINCIAS (IGUAL VALOR Y SERVICIO) -->
-        <div class="provinces-lower-section">
-          <div class="provinces-lower-title">
-            <span><i class="fa-solid fa-location-dot"></i> Provincias con Cobertura y Entrega en Ruta:</span>
-          </div>
-          
-          <div class="provinces-pills-row">
-            <div class="hero-prov-chip">
-              <div class="prov-left"><i class="fa-solid fa-check"></i> Santa Fe</div>
-              <span class="chip-tag">En ruta</span>
-            </div>
-            <div class="hero-prov-chip">
-              <div class="prov-left"><i class="fa-solid fa-check"></i> Córdoba</div>
-              <span class="chip-tag">En ruta</span>
-            </div>
-            <div class="hero-prov-chip">
-              <div class="prov-left"><i class="fa-solid fa-check"></i> Buenos Aires</div>
-              <span class="chip-tag">En ruta</span>
-            </div>
-            <div class="hero-prov-chip">
-              <div class="prov-left"><i class="fa-solid fa-check"></i> Entre Ríos</div>
-              <span class="chip-tag">En ruta</span>
-            </div>
-          </div>
         </div>
 
       </div>
@@ -1869,18 +1599,6 @@
         <p class="about-lead-text">
           Vínculo Agro nace con una misión clara, ser un aliado estratégico en el territorio para productores agropecuarios, contratistas rurales y talleres mecánicos de maquinaria agrícola. 
         </p>
-
-      <!--  <p class="about-body-text">
-          Entendemos la dinámica del campo argentino y sabemos que en plena temporada cada minuto cuenta. Sabemos que una máquina parada en plena campaña no suma valor.
-        </p>
-
-        <p class="about-body-text">
-          Además de componentes y repuestos, construimos relaciones de confianza a largo plazo mediante atención personalizada, asesoramiento técnico, entrega eficiente.
-        </p>
-      
-        <p class="about-body-text">
-           Unimos la calidad de origen con la respuesta inmediata que la actividad agropecuaria exige. 
-        </p>-->
 
       </div>
 
@@ -2065,73 +1783,79 @@
   <!-- ==========================================================================
        FOOTER INSTITUCIONAL
        ========================================================================== -->
-  <footer class="footer">
-    <div class="container">
-      
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="brand-title">
-            <span style="color: #64bd53;">Vínculo</span>
-            <span style="color: var(--dorado-agro);">Agro</span>
-          </div>
-          <p>
-            Soluciones Integrales para el campo.
-          </p>
-        </div>
+<footer class="footer">
+  <div class="container">
 
-        <div class="footer-col">
-          <h4>Navegación</h4>
-          <ul class="footer-links">
-            <li><a href="#inicio"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
-            <li><a href="#pulverizacion"><i class="fa-solid fa-chevron-right"></i> Pulverización</a></li>
-            <li><a href="#siembra-cosecha"><i class="fa-solid fa-chevron-right"></i> Siembra y Cosecha</a></li>
-            <li><a href="#nosotros"><i class="fa-solid fa-chevron-right"></i> Nosotros & Pilares</a></li>
-            <li><a href="#cotizador"><i class="fa-solid fa-chevron-right"></i> Cotizador Online</a></li>
-          </ul>
+    <div class="footer-grid">
+      <!-- Columna 1: Marca -->
+      <div class="footer-brand">
+        <div class="brand-title">
+          <span style="color: #64bd53;">Vínculo</span>
+          <span style="color: var(--dorado-agro);">Agro</span>
         </div>
+        <p>
+          Soluciones Integrales para el campo.
+        </p>
+      </div>
 
-        <div class="footer-col">
-          <h4>Zonas en Ruta</h4>
-          <ul class="footer-links">
-            <li><a href="#contacto"><i class="fa-solid fa-location-dot"></i> Santa Fe</a></li>
-            <li><a href="#contacto"><i class="fa-solid fa-location-dot"></i> Córdoba</a></li>
-            <li><a href="#contacto"><i class="fa-solid fa-location-dot"></i> Buenos Aires</a></li>
-            <li><a href="#contacto"><i class="fa-solid fa-location-dot"></i> Entre Ríos</a></li>
-          </ul>
+      <!-- Columna 2: Navegación -->
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="#inicio"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
+          <li><a href="#pulverizacion"><i class="fa-solid fa-chevron-right"></i> Pulverización</a></li>
+          <li><a href="#siembra-cosecha"><i class="fa-solid fa-chevron-right"></i> Siembra y Cosecha</a></li>
+          <li><a href="#nosotros"><i class="fa-solid fa-chevron-right"></i> Nosotros & Pilares</a></li>
+          <li><a href="#cotizador"><i class="fa-solid fa-chevron-right"></i> Cotizador Online</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Productos (Nueva) -->
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <ul class="footer-links">
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Motor</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Componentes de Pulverización</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Sistemas de Frenos</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Suspensión</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Correas</a></li>
+          <li><a href="#servicios"><i class="fa-solid fa-chevron-right"></i> Bulonería</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Contacto Directo -->
+      <div class="footer-col">
+        <h4>Contacto Directo</h4>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div>
+            <strong>WhatsApp:</strong><br>
+            <a href="https://wa.me/5493472505041" target="_blank" style="color: #fff;" rel="noopener noreferrer">3472 505041</a>
+          </div>
         </div>
-
-        <div class="footer-col">
-          <h4>Contacto Directo</h4>
-          <div class="footer-contact-item">
-            <i class="fa-brands fa-whatsapp"></i>
-            <div>
-              <strong>WhatsApp:</strong><br>
-              <a href="https://wa.me/5493472505041" target="_blank" style="color: #fff;" rel="noopener noreferrer">3472 505041</a>
-            </div>
+        <div class="footer-contact-item">
+          <i class="fa-regular fa-envelope"></i>
+          <div>
+            <strong>Correo Oficial:</strong><br>
+            <a href="mailto:info@vinculoagro.com" style="color: #fff;">info@vinculoagro.com</a>
           </div>
-          <div class="footer-contact-item">
-            <i class="fa-regular fa-envelope"></i>
-            <div>
-              <strong>Correo Oficial:</strong><br>
-              <a href="mailto:info@vinculoagro.com" style="color: #fff;">info@vinculoagro.com</a>
-            </div>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fa-solid fa-clock"></i>
-            <div>
-              <strong>Atención en Campaña:</strong><br>
-              24 hs / 365 días del año
-            </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-clock"></i>
+          <div>
+            <strong>Atención en Campaña:</strong><br>
+            24 hs / 365 días del año
           </div>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 Vínculo Agro. Todos los derechos reservados.</p>
-      </div>
-
     </div>
-  </footer>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Vínculo Agro. Todos los derechos reservados.</p>
+    </div>
+
+  </div>
+</footer>
 
   <!-- Botón Flotante Permanente de WhatsApp -->
   <a href="https://wa.me/5493472505041?text=Hola%20Diego%2C%20te%20escribo%20desde%20la%20p%C3%A1gina%20web%20de%20V%C3%ADnculo%20Agro." target="_blank" class="floating-whatsapp-btn" aria-label="Escribir por WhatsApp a Diego" rel="noopener noreferrer">
